@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medihome</title>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <!-- Main App Container -->
+    <div id="app">
+      <!-- Login Page -->
+      <div id="login" class="page">
+        <h1 class="medihome-title">Medihome</h1>
+        <!-- Green color for Medihome -->
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button onclick="login()">Login</button>
+      </div>
+
+      <!-- Main Interface -->
+      <div id="main" class="page hidden">
+        <div class="app-header">
+          <div class="logo">
+            <img
+              src="https://i.postimg.cc/DWwPVbhc/medi-home.png"
+              alt="Medihome Logo"
+            />
+          </div>
+          <div class="medihome-title">Medihome</div>
+          <div class="settings-button">
+            <img
+              src="https://i.postimg.cc/p5zDQfQP/Windows-Settings-icon-svg.png"
+              alt="Settings"
+              onclick="openSettings()"
+            />
+          </div>
+        </div>
+
+        <div class="main-menu">
+          <div class="menu-item" onclick="showPage('appointment')">
+            <img
+              src="https://i.postimg.cc/k5bQ6qD4/Pngtree-doctor-appointment-icon-with-stethoscope-5264430.png"
+              alt="Appointment Booking"
+            />
+            <span>Appointment Booking</span>
+          </div>
+
+          <div class="menu-item" onclick="showPage('records')">
+            <img
+              src="https://i.postimg.cc/dk7R3PLk/medical-record-1.png"
+              alt="Medical Records"
+            />
+            <span>Medical Records</span>
+          </div>
+          <div class="menu-item" onclick="showPage('medicineSearch')">
+            <img
+              src="https://i.postimg.cc/QC044hQD/search.png"
+              alt="Search Medicine"
+            />
+            <span>Search Medicine</span>
+          </div>
+          <div class="menu-item" onclick="showPage('symptomChecker')">
+            <img
+              src="https://i.postimg.cc/cgVR89nD/symptoms-check-icon.png"
+              alt="Symptom Checker"
+            />
+            <span>Symptom Checker</span>
+          </div>
+        </div>
+
+        <footer class="bottom-nav">
+          <div class="footer-item" onclick="showPage('main')">
+            <img src="https://i.postimg.cc/7CtMqYYr/home.png" alt="Home" />
+          </div>
+          <div class="footer-item" onclick="showPage('calendar')">
+            <img
+              src="https://i.postimg.cc/Yvkx3syZ/299092-calendar-icon.png"
+              alt="Calendar"
+            />
+          </div>
+          <div class="footer-item" onclick="showPage('profile')">
+            <img
+              src="https://i.postimg.cc/3kBFbFsR/7718888.png"
+              alt="Profile"
+            />
+          </div>
+        </footer>
+      </div>
+
+      <!-- Appointment Booking Page -->
+      <div id="appointment" class="page hidden">
+        <div class="container">
+          <h3>Book an Appointment</h3>
+          <p>
+            Select a doctor and choose a time slot to book your appointment.
+          </p>
+          <h4>Select a Doctor</h4>
+
+          <div
+            class="doctor-card"
+            data-doctor="Dr. Emily Carter"
+            onclick="selectDoctor(this)"
+          >
+            <img
+              src="https://i.postimg.cc/BP4zRBSn/Emily-Carter-2-headshot.jpg"
+              alt="Dr. Emily Carter"
+            />
+            <div>
+              <h5>Dr. Emily Carter</h5>
+              <p>Cardiologist</p>
+            </div>
+          </div>
+
+          <div
+            class="doctor-card"
+            data-doctor="Dr. John Smith"
+            onclick="selectDoctor(this)"
+          >
+            <img
+              src="https://i.postimg.cc/rzTF86zK/lee-sarah-2018-web-500x400.jpg"
+              alt="Dr. John Smith"
+            />
+            <div>
+              <h5>Dr. John Smith</h5>
+              <p>Orthopedic Surgeon</p>
+            </div>
+          </div>
+
+          <div
+            class="doctor-card"
+            data-doctor="Dr. Sarah Lee"
+            onclick="selectDoctor(this)"
+          >
+            <img
+              src="https://i.postimg.cc/5QgrJQyq/UGfc5lml-400x400.jpg"
+              alt="Dr. Sarah Lee"
+            />
+            <div>
+              <h5>Dr. Sarah Lee</h5>
+              <p>Pediatrician</p>
+            </div>
+          </div>
+
+          <h4>Choose a Time Slot</h4>
+          <div class="time-slots">
+            <button class="time-slot">10 AM</button>
+            <button class="time-slot">11 AM</button>
+            <button class="time-slot">2 PM</button>
+            <button class="time-slot">3 PM</button>
+            <button class="time-slot">4 PM</button>
+          </div>
+          <button id="confirm-button">Confirm Appointment</button>
+          <br />
+
+          <!-- Updated Back Button -->
+          <a href="#" class="back-button" onclick="showPage('main')">
+            <img
+              src="https://i.postimg.cc/Hs7SN7QW/left.png"
+              alt="Back to Main Menu"
+              style="width: 20px; height: 20px; vertical-align: middle"
+            />
+            Back to Main Menu
+          </a>
+        </div>
+      </div>
+
+      <!-- Medical Records Page -->
+      <div id="records" class="page hidden">
+        <div class="container">
+          <h3>Your Medical Records</h3>
+          <div class="search-bar">
+            <input
+              type="text"
+              placeholder="Search records..."
+              id="searchInput"
+            />
+            <button id="filterButton">Filter</button>
+          </div>
+          <div class="record">
+            <h3>Appointment with Dr. Smith</h3>
+            <span class="date">03/15/2023</span>
+            <p>General check-up and consultation.</p>
+          </div>
+          <div class="record">
+            <h3>Blood Test Results</h3>
+            <span class="date">02/20/2023</span>
+            <p>Cholesterol levels within normal range.</p>
+          </div>
+          <div class="record">
+            <h3>Prescription for Medication</h3>
+            <span class="date">01/25/2023</span>
+            <p>Medication for blood pressure management.</p>
+          </div>
+          <a href="#" class="back-button" onclick="showPage('main')">
+            <img
+              src="https://i.postimg.cc/Hs7SN7QW/left.png"
+              alt="Back to Main Menu"
+              style="width: 20px; height: 20px; vertical-align: middle"
+            />
+            Back to Main Menu
+          </a>
+        </div>
+      </div>
+
+      <!-- Medicine Search Page -->
+      <div id="medicineSearch" class="page hidden">
+        <div class="container">
+          <header class="medicine-header">
+            <h2>Ã°Å¸â€Â Medicine Finder</h2>
+          </header>
+
+          <div class="search-bar">
+            <input
+              type="text"
+              id="medicineInput"
+              placeholder="Enter medicine name..."
+              onkeyup="searchMedicine()"
+            />
+            <button id="searchBtn" onclick="searchMedicine()">Search</button>
+          </div>
+
+          <div id="searchResults" class="hidden">
+            <h3>Search Results:</h3>
+            <ul id="medicineList"></ul>
+          </div>
+
+          <div class="suggestions">
+            <h4>Quick Suggestions:</h4>
+            <div class="suggestion-buttons">
+              <button onclick="searchMedicine('Paracetamol')">
+                Paracetamol
+              </button>
+              <button onclick="searchMedicine('Ibuprofen')">Ibuprofen</button>
+              <button onclick="searchMedicine('Amoxicillin')">
+                Amoxicillin
+              </button>
+              <button onclick="searchMedicine('Aspirin')">Aspirin</button>
+            </div>
+          </div>
+
+          <a href="#" class="back-button" onclick="showPage('main')">
+            <img
+              src="https://i.postimg.cc/Hs7SN7QW/left.png"
+              alt="Back to Main Menu"
+              style="width: 20px; height: 20px; vertical-align: middle"
+            />
+            Back to Main Menu
+          </a>
+        </div>
+      </div>
+
+      <!-- Symptom Checker Page -->
+      <div id="symptomChecker" class="page hidden">
+        <div class="container">
+          <h1>AI Medical Imaging & Symptom Checker</h1>
+          <section id="about-diseases">
+            <h2>About Diseases</h2>
+            <p>
+              Google Health is advancing AI-enabled imaging and diagnostics to
+              improve clinical decision-making and patient care. Their Medical
+              Imaging Suite (MIS) leverages AI to enhance diagnostic accuracy,
+              streamline workflows, and address the global shortage of
+              radiologists. Key features include automated annotation,
+              interoperability for data sharing, and predictive algorithms for
+              diseases like prostate cancer.
+            </p>
+          </section>
+
+          <section id="features">
+            <h2>Features of This Application</h2>
+            <ul>
+              <li>Image Upload: Users can upload a medical image.</li>
+              <li>
+                Simulated Analysis: The application simulates an AI analysis
+                based on the uploaded file name.
+              </li>
+              <li>
+                Symptom Checker: Enter symptoms and receive simulated AI
+                diagnosis and recommendations.
+              </li>
+            </ul>
+          </section>
+
+          <section id="image-upload">
+            <h2>Upload Medical Image</h2>
+            <input type="file" id="imageInput" accept="image/*" />
+            <button onclick="simulateAnalysis()">Analyze Image</button>
+            <div id="analysis-result" class="hidden">
+              <h3>Simulated Analysis Result</h3>
+              <p id="result-text"></p>
+            </div>
+          </section>
+
+          <section id="symptom-checker">
+            <h2>AI Symptom Checker</h2>
+            <form id="symptom-form">
+              <label for="symptoms">Describe your symptoms:</label><br />
+              <textarea
+                id="symptoms"
+                rows="4"
+                placeholder="Enter your symptoms here..."
+              ></textarea
+              ><br />
+              <button type="button" onclick="checkSymptoms()">
+                Check Symptoms
+              </button>
+            </form>
+
+            <div id="result" class="hidden">
+              <h3>Results</h3>
+              <p id="diagnosis"></p>
+              <button onclick="showRecommendations()">
+                Show Recommendations
+              </button>
+            </div>
+
+            <div id="recommendations" class="hidden">
+              <h3>Recommendations</h3>
+              <ul id="recommendation-list"></ul>
+            </div>
+
+            <div id="emergency" class="hidden">
+              <h3>Emergency Alert</h3>
+              <p>
+                If you are experiencing severe symptoms, please contact
+                emergency services immediately!
+              </p>
+            </div>
+          </section>
+        </div>
+        <a href="#" class="back-button" onclick="showPage('main')">
+          <img
+            src="https://i.postimg.cc/Hs7SN7QW/left.png"
+            alt="Back to Main Menu"
+            style="width: 20px; height: 20px; vertical-align: middle"
+          />
+          Back to Main Menu
+        </a>
+      </div>
+
+      <!-- Calendar Page -->
+      <div id="calendar" class="page hidden">
+        <div class="calendar">
+          <header>
+            <h1 id="monthYear"></h1>
+            <div class="nav-buttons">
+              <button id="prevMonth">&lt;</button>
+              <button id="nextMonth">&gt;</button>
+            </div>
+          </header>
+          <div class="days-of-week">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+          </div>
+          <div id="calendarDays" class="calendar-days"></div>
+        </div>
+        <a href="#" class="back-button" onclick="showPage('main')">
+          <img
+            src="https://i.postimg.cc/Hs7SN7QW/left.png"
+            alt="Back to Main Menu"
+            style="width: 20px; height: 20px; vertical-align: middle"
+          />
+          Back to Main Menu
+        </a>
+      </div>
+
+      <!-- Profile Page -->
+      <div id="profile" class="page hidden">
+        <div class="container">
+          <h1>User Profile</h1>
+
+          <div class="profile-info">
+            <img
+              id="profile-pic"
+              src="https://i.postimg.cc/q7Rhq2B2/pngwing-com.png"
+              alt="Profile Picture"
+              style="width: 100px; height: 100px; border-radius: 50%"
+            />
+            <h2 id="username">username</h2>
+            <p id="bio">This is a brief bio about the user.</p>
+          </div>
+
+          <button onclick="editProfile()">Edit Profile</button>
+
+          <div id="edit-form" class="hidden">
+            <h2>Edit Profile</h2>
+            <label for="name">Name:</label>
+            <input type="text" id="name" value="John Doe" /><br />
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" value="30" /><br />
+
+            <label for="gender">Gender:</label>
+            <select id="gender">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option></select
+            ><br />
+
+            <label for="bio-input">Bio:</label><br />
+            <textarea id="bio-input" rows="4">
+This is a brief bio about the user.</textarea
+            ><br />
+
+            <button onclick="saveProfile()">Save Changes</button>
+            <button onclick="cancelEdit()">Cancel</button>
+          </div>
+
+          <div class="activity-log">
+            <h2>Activity Log</h2>
+            <ul id="activity-list">
+              <li>Joined the app on January 1, 2025.</li>
+              <li>Completed profile setup on January 5, 2025.</li>
+            </ul>
+          </div>
+        </div>
+        <a href="#" class="back-button" onclick="showPage('main')">
+          <img
+            src="https://i.postimg.cc/Hs7SN7QW/left.png"
+            alt="Back to Main Menu"
+            style="width: 20px; height: 20px; vertical-align: middle"
+          />
+          Back to Main Menu
+        </a>
+      </div>
+    </div>
+
+    <script src="scripts.js"></script>
+  </body>
+</html>
